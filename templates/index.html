@@ -79,36 +79,42 @@
     <script>
         // Array de mensagens promocionais para rotação
         const promoMessages = [
-           "Deixe sua ⭐ no meu GitHub e acompanhe meus próximos projetos! 💫"
+           "Deixe sua ⭐ no meu GitHub e acompanhe meus próximos projetos! 💫",
+           "Veja meus novos projetos no GitHub e colabore com a comunidade! 🚀",
+           "Siga @umataldetatiana no Twitter e acompanhe as novidades do mundo dev! 🐦"
         ];
 
-        let currentMessageIndex = 0;
+        // Função para iniciar a rotação de mensagens promocionais, se houver mais de uma mensagem
+        if (promoMessages.length > 1) {
+            let currentMessageIndex = 0;
 
-        // Função para rotacionar mensagens promocionais
-        function rotatePromoMessage() {
-            const promoElement = document.getElementById('promo-message');
-            currentMessageIndex = (currentMessageIndex + 1) % promoMessages.length;
-            
-            // Adiciona links clicáveis nas mensagens
-            let message = promoMessages[currentMessageIndex];
-            if (message.includes('github.com/tatyquebralayout')) {
-                message = message.replace(
-                    'github.com/tatyquebralayout',
-                    '<a href="https://github.com/tatyquebralayout" target="_blank" class="text-blue-600 hover:text-blue-800 underline">github.com/tatyquebralayout</a>'
-                );
+            function rotatePromoMessage() {
+                const promoElement = document.getElementById('promo-message');
+                currentMessageIndex = (currentMessageIndex + 1) % promoMessages.length;
+
+                let message = promoMessages[currentMessageIndex];
+                if (message.includes('github.com/tatyquebralayout')) {
+                    message = message.replace(
+                        'github.com/tatyquebralayout',
+                        '<a href="https://github.com/tatyquebralayout" target="_blank" class="text-blue-600 hover:text-blue-800 underline">github.com/tatyquebralayout</a>'
+                    );
+                }
+                if (message.includes('@umataldetatiana')) {
+                    message = message.replace(
+                        '@umataldetatiana',
+                        '<a href="https://x.com/umataldetatiana" target="_blank" class="text-blue-600 hover:text-blue-800 underline">@umataldetatiana</a>'
+                    );
+                }
+
+                promoElement.innerHTML = message;
             }
-            if (message.includes('@umataldetatiana')) {
-                message = message.replace(
-                    '@umataldetatiana',
-                    '<a href="https://x.com/umataldetatiana" target="_blank" class="text-blue-600 hover:text-blue-800 underline">@umataldetatiana</a>'
-                );
-            }
-            
-            promoElement.innerHTML = message;
+
+            // Rotaciona mensagens a cada 5 segundos
+            setInterval(rotatePromoMessage, 5000);
+        } else {
+            // Mostra a mensagem única sem rotação
+            document.getElementById('promo-message').innerHTML = promoMessages[0];
         }
-
-        // Rotaciona mensagens a cada 5 segundos
-        setInterval(rotatePromoMessage, 5000);
 
         // Função para atualizar o progresso
         function updateProgress(status, message, progress, funMessage) {
