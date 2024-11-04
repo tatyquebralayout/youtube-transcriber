@@ -1,4 +1,7 @@
- openai-whisper>=20231117
+openai-whisper>=20231117
 yt-dlp>=2023.12.30
 torch>=2.1.0
 ffmpeg-python>=0.2.0
+rich>=13.7.0
+flask>=3.0.0
+flask-cors>=4.0.0
