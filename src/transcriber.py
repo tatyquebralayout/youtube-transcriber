@@ -101,7 +101,7 @@ class VideoMetadata:
     upload_date: str
     transcript_date: str = None
 
-class ObsidianIntegration:
+class Transcriber:
     def __init__(self, vault_path: str, template_path: Optional[str] = None):
         """
         Inicializa a integração com o Obsidian.
