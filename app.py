@@ -1,158 +1,210 @@
 from flask import Flask, render_template, request, jsonify, send_file
-from src.transcriber import process_youtube_video
-from src.messages import get_random_message  # Importando do módulo messages
-import os
+from werkzeug.utils import secure_filename
+import logging
+from pathlib import Path
+import torch
+from typing import Optional, Dict
 from datetime import datetime
-import threading
-from urllib.parse import urlparse, parse_qs
+import os
+
+from src.transcriber import Transcriber
+from src.messages import Messages
 
 app = Flask(__name__)
 
-# Define os diretórios
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-TRANSCRICOES_DIR = os.path.join(BASE_DIR, 'transcricoes')
-DOWNLOADS_DIR = os.path.join(BASE_DIR, 'downloads')
+# Configuração de diretórios
+BASE_DIR = Path(__file__).resolve().parent
+TRANSCRICOES_DIR = BASE_DIR / 'transcricoes'
+DOWNLOADS_DIR = BASE_DIR / 'downloads'
+LOGS_DIR = BASE_DIR / 'logs'
 
-# Dicionário para armazenar o status das transcrições
-transcription_status = {}
+# Certifique-se de que os diretórios existem
+for directory in [TRANSCRICOES_DIR, DOWNLOADS_DIR, LOGS_DIR]:
+    os.makedirs(directory, exist_ok=True)
 
-def get_video_id(url):
-    """Extrai o ID do vídeo da URL do YouTube"""
-    try:
-        parsed_url = urlparse(url)
-        if parsed_url.netloc == 'youtu.be':
-            return parsed_url.path[1:]
-        if parsed_url.netloc in ['www.youtube.com', 'youtube.com']:
-            return parse_qs(parsed_url.query)['v'][0]
-    except:
-        return None
+# Configuração de logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler()
+    ]
+)
 
-def process_video_task(url, video_id):
-    """Processa o vídeo em background e atualiza o status"""
-    try:
-        # Iniciando (0-10%)
-        transcription_status[video_id] = {
-            'status': 'starting',
-            'message': 'Iniciando processamento...',
-            'progress': 5,
-            'fun_message': get_random_message(5)
+logger = logging.getLogger('YouTubeTranscriber')
+
+class YouTubeTranscriberApp:
+    def __init__(self):
+        self.app = Flask(__name__)
+        self.app.config['SECRET_KEY'] = 'your-secret-key'
+        
+        # Diretórios
+        self.base_dir = Path(__file__).parent
+        self.dirs = {
+            'transcricoes': self.base_dir / 'transcricoes',
+            'downloads': self.base_dir / 'downloads',
+            'logs': self.base_dir / 'logs'
         }
+        
+        # Inicializa o gerenciador de mensagens
+        self.messages_manager = Messages()
+        
+        self._setup_directories()
+        self._setup_cuda()
+        self._setup_transcriber()
+        self._setup_routes()
+        
+        # Status das transcrições
+        self.transcription_status = {}
 
-        # Download (11-30%)
-        transcription_status[video_id] = {
-            'status': 'downloading',
-            'message': 'Baixando vídeo do YouTube...',
-            'progress': 20,
-            'fun_message': get_random_message(20)
-        }
+    def _setup_directories(self):
+        for name, path in self.dirs.items():
+            if not path.exists():
+                path.mkdir(parents=True)
+                logger.info(f"Created directory: {path}")
 
-        # Processamento (31-50%)
-        transcription_status[video_id] = {
-            'status': 'processing',
-            'message': 'Processando áudio...',
-            'progress': 40,
-            'fun_message': get_random_message(40)
-        }
+    def _setup_cuda(self):
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        logger.info(f"Using device: {self.device}")
 
-        # Transcrição (51-80%)
-        transcription_status[video_id] = {
-            'status': 'transcribing',
-            'message': 'Transcrevendo áudio...',
-            'progress': 60,
-            'fun_message': get_random_message(60)
-        }
-
-        success = process_youtube_video(
-            url,
-            output_dir=TRANSCRICOES_DIR,
-            downloads_dir=DOWNLOADS_DIR
+    def _setup_transcriber(self):
+        self.transcriber = Transcriber(
+            output_dir=self.dirs['transcricoes'],
+            downloads_dir=self.dirs['downloads']
         )
 
-        if success:
-            # Conclusão (100%)
-            transcription_status[video_id] = {
-                'status': 'completed',
-                'message': 'Transcrição concluída!',
-                'progress': 100,
-                'fun_message': get_random_message(100)
-            }
-        else:
-            # Erro
-            transcription_status[video_id] = {
-                'status': 'error',
-                'message': 'Erro ao processar o vídeo',
-                'progress': -1,
-                'fun_message': get_random_message(-1)
-            }
+    def _setup_routes(self):
+        self.app.add_url_rule('/', 'index', self.index)
+        self.app.add_url_rule('/transcribe', 'transcribe', 
+                            self.transcribe, methods=['POST'])
+        self.app.add_url_rule('/status/<video_id>', 'status', self.status)
+        self.app.add_url_rule('/transcricoes', 'list_transcricoes', 
+                            self.list_transcricoes)
+        self.app.add_url_rule('/download/<filename>', 'download', self.download)
 
-    except Exception as e:
-        transcription_status[video_id] = {
-            'status': 'error',
-            'message': f'Erro: {str(e)}',
-            'progress': -1,
-            'fun_message': get_random_message(-1)
+    def update_status(self, video_id: str, status: str, progress: int, error: str = None):
+        """Atualiza o status de uma transcrição"""
+        message = self.messages_manager.get_message(progress)
+        self.transcription_status[video_id] = {
+            'status': status,
+            'progress': progress,
+            'message': message,
+            'error': error
         }
+        logger.debug(f"Status updated: {video_id} - {status} - {progress}% - {message}")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+    def process_video(self, url: str, video_id: str):
+        """Processa o vídeo em background"""
+        try:
+            self.update_status(video_id, 'downloading', 20)
+            success = self.transcriber.process_video(url)
+            
+            if success:
+                self.update_status(video_id, 'completed', 100)
+                logger.info(f"Video processed successfully: {video_id}")
+            else:
+                self.update_status(video_id, 'error', -1, error='Falha na transcrição')
+                logger.error(f"Failed to process video: {video_id}")
+                
+        except Exception as e:
+            logger.error(f"Error processing video {video_id}: {e}")
+            self.update_status(video_id, 'error', -1, error=str(e))
 
-@app.route('/transcribe', methods=['POST'])
-def transcribe():
-    url = request.json.get('url', '')
-    
-    if not url:
-        return jsonify({'error': 'URL não fornecida'}), 400
+    def index(self):
+        """Página inicial"""
+        return render_template('index.html')
 
-    video_id = get_video_id(url)
-    if not video_id:
-        return jsonify({'error': 'URL do YouTube inválida'}), 400
+    def transcribe(self):
+        """Endpoint de transcrição"""
+        try:
+            data = request.get_json()
+            url = data.get('url')
 
-    thread = threading.Thread(target=process_video_task, args=(url, video_id))
-    thread.start()
+            if not url:
+                return jsonify({'error': 'URL não fornecida'}), 400
 
-    return jsonify({
-        'status': 'processing',
-        'message': 'Processamento iniciado',
-        'video_id': video_id
-    })
+            from urllib.parse import urlparse
+            video_id = self.get_video_id(url)
+            if not video_id:
+                return jsonify({'error': 'URL do YouTube inválida'}), 400
 
-@app.route('/status/<video_id>')
-def status(video_id):
-    return jsonify(transcription_status.get(video_id, {
-        'status': 'not_found',
-        'message': 'Transcrição não encontrada',
-        'progress': 0,
-        'fun_message': 'Transcrição não encontrada 😕'
-    }))
+            from threading import Thread
+            Thread(target=self.process_video, args=(url, video_id), 
+                  daemon=True).start()
+            
+            logger.info(f"Started transcription for video: {video_id}")
+            return jsonify({'video_id': video_id}), 202
 
-@app.route('/transcricoes')
-def list_transcricoes():
-    try:
-        files = []
-        for file in os.listdir(TRANSCRICOES_DIR):
-            if file.endswith('_transcricao.txt'):
-                file_path = os.path.join(TRANSCRICOES_DIR, file)
+        except Exception as e:
+            logger.error(f"Error in transcribe endpoint: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    def get_video_id(self, url: str) -> Optional[str]:
+        """Extrai o ID do vídeo do YouTube"""
+        from urllib.parse import urlparse, parse_qs
+        try:
+            parsed_url = urlparse(url)
+            
+            if parsed_url.netloc == 'youtu.be':
+                return parsed_url.path[1:]
+            
+            if 'youtube.com' in parsed_url.netloc:
+                if parsed_url.path == '/watch':
+                    return parse_qs(parsed_url.query)['v'][0]
+                if parsed_url.path.startswith(('/embed/', '/v/')):
+                    return parsed_url.path.split('/')[2]
+            
+            return None
+        except Exception as e:
+            logger.error(f"Error extracting video ID: {e}")
+            return None
+
+    def status(self, video_id: str):
+        """Status da transcrição"""
+        status_data = self.transcription_status.get(video_id, {
+            'status': 'not_found',
+            'message': self.messages_manager.get_message(-1),
+            'progress': 0
+        })
+        return jsonify(status_data)
+
+    def list_transcricoes(self):
+        """Lista de transcrições"""
+        try:
+            files = []
+            for file in self.dirs['transcricoes'].glob('*_transcricao.txt'):
                 files.append({
-                    'name': file,
-                    'date': datetime.fromtimestamp(os.path.getmtime(file_path)).isoformat()
+                    'name': file.name,
+                    'date': datetime.fromtimestamp(file.stat().st_mtime).isoformat(),
+                    'size': file.stat().st_size
                 })
-        return jsonify({'files': sorted(files, key=lambda x: x['date'], reverse=True)})
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+            return jsonify({'files': sorted(files, key=lambda x: x['date'], 
+                                          reverse=True)})
+        except Exception as e:
+            logger.error(f"Error listing transcriptions: {e}")
+            return jsonify({'error': str(e)}), 500
 
-@app.route('/download/<filename>')
-def download(filename):
-    try:
-        return send_file(
-            os.path.join(TRANSCRICOES_DIR, filename),
-            as_attachment=True,
-            download_name=filename
-        )
-    except Exception as e:
-        return jsonify({'error': str(e)}), 404
+    def download(self, filename: str):
+        """Download de arquivo"""
+        try:
+            file_path = self.dirs['transcricoes'] / secure_filename(filename)
+            if not file_path.is_file():
+                return jsonify({'error': 'Arquivo não encontrado'}), 404
+            return send_file(file_path, as_attachment=True, download_name=filename)
+        except Exception as e:
+            logger.error(f"Error downloading file: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    def get_app(self):
+        """Retorna a aplicação Flask"""
+        return self.app
+
+def create_app():
+    """Cria e retorna uma nova instância da aplicação"""
+    transcriber_app = YouTubeTranscriberApp()
+    return transcriber_app.get_app()
 
 if __name__ == '__main__':
-    os.makedirs(TRANSCRICOES_DIR, exist_ok=True)
-    os.makedirs(DOWNLOADS_DIR, exist_ok=True)
-    app.run(debug=True)
+    flask_app = create_app()
+    flask_app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,0 +1,475 @@
+2024-11-04 21:29:02,135 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:29:02,136 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:29:02,136 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:29:02,776 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:29:02,784 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:29:02,795 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:34:11,084 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\main.py', reloading
+2024-11-04 21:34:14,066 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:34:14,066 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:34:14,067 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:34:14,674 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:34:14,682 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:34:14,694 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:34:33,178 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:34:33,179 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:34:33,179 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:34:33,771 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:34:33,789 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-04 21:34:33,790 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-04 21:34:33,792 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:34:36,122 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:34:36,123 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:34:36,123 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:34:36,727 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:34:36,735 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:34:36,746 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:43:24,458 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:43:24,459 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:43:24,459 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:43:25,076 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:43:25,090 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-04 21:43:25,092 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-04 21:43:25,093 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:43:27,442 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:43:27,443 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:43:27,443 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:43:28,045 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:43:28,053 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:43:28,064 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:43:38,190 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:43:38] "GET / HTTP/1.1" 200 -
+2024-11-04 21:43:38,253 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:43:38] "GET /static/css/main.css HTTP/1.1" 200 -
+2024-11-04 21:43:38,258 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:43:38] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-04 21:44:14,744 - __main__ - INFO - Status update for _dRivJTYlgw: starting - 5%
+2024-11-04 21:44:14,745 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:14] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-04 21:44:14,745 - __main__ - INFO - Status update for _dRivJTYlgw: downloading - 20%
+2024-11-04 21:44:14,747 - __main__ - INFO - Status update for _dRivJTYlgw: processing - 40%
+2024-11-04 21:44:14,747 - __main__ - INFO - Status update for _dRivJTYlgw: transcribing - 60%
+2024-11-04 21:44:14,751 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:14] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:15,755 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:15] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:16,870 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:16] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:17,960 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:17] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:18,971 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:18] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:19,985 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:19] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:21,062 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:21] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:22,115 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:22] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:23,127 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:23] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:24,137 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:24] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:25,149 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:25] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:26,163 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:26] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:27,168 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:27] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:28,177 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:28] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:29,287 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:29] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:31,291 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:31] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:33,287 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:33] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:35,302 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:35] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:37,289 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:37] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:39,300 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:39] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:41,296 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:41] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:43,298 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:43] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:45,301 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:45] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:47,291 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:47] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:49,301 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:49] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:51,294 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:51] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:53,301 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:53] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:55,300 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:55] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:57,298 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:57] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:44:59,297 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:44:59] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:01,290 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:01] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:03,290 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:03] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:05,290 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:05] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:07,289 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:07] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:09,295 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:09] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:11,286 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:11] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:13,294 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:13] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:15,290 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:15] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:17,299 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:17] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:19,300 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:19] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:21,297 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:21] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:23,296 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:23] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:25,294 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:25] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:27,293 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:27] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:29,293 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:29] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:31,301 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:31] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:33,289 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:33] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:35,299 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:35] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:37,299 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:37] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:39,301 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:39] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:40,519 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:40] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:41,532 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:41] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:42,537 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:42] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:43,552 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:43] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:44,572 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:44] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:45,592 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:45] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:46,613 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:46] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:47,621 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:47] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:48,641 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:48] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:49,658 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:49] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:50,665 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:50] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:51,563 - __main__ - INFO - Transcription completed for _dRivJTYlgw
+2024-11-04 21:45:51,673 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:51] "GET /status/_dRivJTYlgw HTTP/1.1" 200 -
+2024-11-04 21:45:54,679 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:54] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-04 21:45:58,437 - werkzeug - INFO - 127.0.0.1 - - [04/Nov/2024 21:45:58] "[33mGET /download/Nova%20IA%20Para%20Criar%20Imagens%20Realistas%20GRÁTIS%20(Melhor%20que%20Midjourney)_transcricao.txt HTTP/1.1[0m" 404 -
+2024-11-04 21:52:40,050 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\app.py', reloading
+2024-11-04 21:52:40,414 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:52:42,892 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:52:42,892 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:52:42,892 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:52:43,505 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:52:43,512 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:52:43,525 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:54:00,258 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\main.py', reloading
+2024-11-04 21:54:00,591 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:54:03,119 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:54:03,120 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:54:03,120 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:54:03,752 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:54:03,760 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:54:03,772 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:56:56,498 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\transcriber.py', reloading
+2024-11-04 21:56:56,833 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:56:59,238 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:56:59,238 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:56:59,239 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:56:59,842 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:56:59,849 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:56:59,861 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:57:20,956 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\transcriber.py', reloading
+2024-11-04 21:57:21,297 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:57:23,789 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:57:23,790 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:57:23,790 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:57:24,403 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:57:24,412 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:57:24,423 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 21:57:41,500 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\messages.py', reloading
+2024-11-04 21:57:41,838 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 21:57:44,151 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 21:57:44,152 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 21:57:44,152 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 21:57:44,756 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 21:57:44,763 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 21:57:44,774 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 22:08:19,473 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\messages.py', reloading
+2024-11-04 22:08:19,822 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:08:22,307 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:08:22,309 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:08:22,309 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 22:08:22,921 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 22:08:22,928 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 22:08:22,939 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 22:10:47,547 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\transcriber.py', reloading
+2024-11-04 22:10:47,897 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:10:50,450 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:10:50,451 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:10:50,451 - __main__ - INFO - Directory initialized: F:\projetos\videos\transcrever videos\youtube-transcriber\logs
+2024-11-04 22:10:50,453 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:10:51,058 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:10:51,059 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:10:51,060 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:10:51,060 - __main__ - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 22:10:51,069 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 22:10:51,081 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 22:12:19,467 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\app.py', reloading
+2024-11-04 22:12:19,801 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:13:46,670 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:18:08,157 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:18:08,158 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:18:08,766 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:18:08,767 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:18:08,767 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:18:08,769 - YouTubeTranscriber - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 22:19:22,582 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:19:22,582 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:19:23,214 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:19:23,215 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:19:23,215 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:19:23,218 - YouTubeTranscriber - INFO - Starting application on 0.0.0.0:5000
+2024-11-04 22:19:23,237 - YouTubeTranscriber - ERROR - Error starting server: 'WERKZEUG_SERVER_FD'
+2024-11-04 22:22:54,514 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:22:54,515 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:22:55,132 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:22:55,132 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:22:55,133 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:22:55,148 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-04 22:22:55,150 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-04 22:22:55,151 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:22:57,570 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:22:57,571 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:22:58,364 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:22:58,365 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:22:58,366 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:22:58,375 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 22:22:58,387 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-04 22:23:18,484 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:23:18] "GET / HTTP/1.1" 200 -
+2024-11-04 22:23:18,601 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:23:18] "GET /static/css/main.css HTTP/1.1" 200 -
+2024-11-04 22:23:18,609 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:23:18] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-04 22:23:19,130 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:23:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-04 22:24:06,690 - YouTubeTranscriber - ERROR - Error processing video 42bThEZ_uco: Messages.get_message() missing 1 required positional argument: 'progress'
+2024-11-04 22:24:06,690 - YouTubeTranscriber - INFO - Started transcription for video: 42bThEZ_uco
+2024-11-04 22:24:06,693 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:06] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-04 22:24:06,697 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:06] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:07,714 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:07] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:08,719 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:08] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:09,736 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:09] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:10,746 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:10] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:11,754 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:11] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:12,628 - YouTubeTranscriber - ERROR - Error processing video 42bThEZ_uco: Messages.get_message() missing 1 required positional argument: 'progress'
+2024-11-04 22:24:12,628 - YouTubeTranscriber - INFO - Started transcription for video: 42bThEZ_uco
+2024-11-04 22:24:12,629 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:12] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-04 22:24:12,634 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:12] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:12,764 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:12] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:13,644 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:13] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:13,767 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:13] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:14,650 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:14] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:14,778 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:14] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:15,666 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:15] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:15,792 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:15] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:16,674 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:16] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:16,800 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:16] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:17,689 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:17] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:17,813 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:17] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:18,697 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:18] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:18,823 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:18] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:19,716 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:19] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:19,836 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:19] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:20,727 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:20] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:20,855 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:20] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:21,745 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:21] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:21,870 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:21] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:22,754 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:22] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:22,880 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:22] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:23,767 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:23] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:23,893 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:23] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:24,774 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:24] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:24,900 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:24] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:25,783 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:25] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:25,909 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:25] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:26,796 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:26] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:24:26,921 - werkzeug - INFO - 192.168.1.15 - - [04/Nov/2024 22:24:26] "GET /status/42bThEZ_uco HTTP/1.1" 200 -
+2024-11-04 22:28:29,859 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:28:29,860 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:28:30,475 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:28:30,476 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:28:30,476 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:28:30,492 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-04 22:28:30,494 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-04 22:28:30,495 - werkzeug - INFO -  * Restarting with stat
+2024-11-04 22:28:32,913 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-04 22:28:32,914 - src.transcriber - INFO - Using device: cpu
+2024-11-04 22:28:33,784 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-04 22:28:33,785 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-04 22:28:33,785 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-04 22:28:33,794 - werkzeug - WARNING -  * Debugger is active!
+2024-11-04 22:28:33,806 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-05 00:03:00,900 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:03:00,913 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:03:02,040 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:03:02,040 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:03:02,041 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:03:02,062 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-05 00:03:02,063 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-05 00:03:02,066 - werkzeug - INFO -  * Restarting with stat
+2024-11-05 00:03:04,498 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:03:04,499 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:03:05,162 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:03:05,162 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:03:05,163 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:03:05,171 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 00:03:05,182 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-05 00:03:22,416 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:22] "GET / HTTP/1.1" 200 -
+2024-11-05 00:03:22,479 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:22] "GET /static/css/main.css HTTP/1.1" 200 -
+2024-11-05 00:03:22,485 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:22] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 00:03:25,203 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:25] "GET / HTTP/1.1" 200 -
+2024-11-05 00:03:25,215 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:25] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 00:03:25,218 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:03:25] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 00:06:50,259 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:06:50,260 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:06:50,869 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:06:51,215 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:06:51,216 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:06:51,230 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-05 00:06:51,231 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-05 00:06:51,232 - werkzeug - INFO -  * Restarting with stat
+2024-11-05 00:06:53,674 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:06:53,675 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:06:54,339 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:06:54,340 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:06:54,341 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:06:54,350 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 00:06:54,361 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-05 00:07:03,574 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:03] "GET / HTTP/1.1" 200 -
+2024-11-05 00:07:03,620 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:03] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 00:07:03,624 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:03] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 00:07:22,846 - src.transcriber - INFO - Starting video processing: https://www.youtube.com/watch?v=q6nPR9LzL_0
+2024-11-05 00:07:22,846 - YouTubeTranscriber - INFO - Started transcription for video: q6nPR9LzL_0
+2024-11-05 00:07:22,847 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:22] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-05 00:07:22,852 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:22] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:23,861 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:23] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:24,945 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:24] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:26,013 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:26] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:27,027 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:27] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:27,750 - src.transcriber - INFO - Downloading audio from YouTube...
+2024-11-05 00:07:28,045 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:28] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:29,122 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:29] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:30,234 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:30] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:31,277 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:31] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:32,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:32] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:33,059 - src.transcriber - INFO - Transcribing audio...
+2024-11-05 00:07:33,302 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:33] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:34,310 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:34] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:35,323 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:35] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:36,342 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:36] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:37,359 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:37] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:38,372 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:38] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:39,511 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:39] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:40,531 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:40] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:41,838 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:41] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:43,294 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:43] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:45,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:45] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:47,295 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:47] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:49,296 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:49] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:51,300 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:51] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:53,286 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:53] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:55,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:55] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:57,288 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:57] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:07:59,298 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:07:59] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:01,293 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:01] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:03,295 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:03] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:05,294 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:05] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:07,291 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:07] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:09,292 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:09] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:11,288 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:11] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:13,287 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:13] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:15,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:15] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:17,303 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:17] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:19,303 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:19] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:21,298 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:21] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:23,300 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:23] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:25,289 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:25] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:27,292 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:27] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:29,295 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:29] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:31,296 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:31] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:33,287 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:33] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:35,289 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:35] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:37,292 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:37] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:39,297 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:39] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:41,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:41] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:43,289 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:43] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:45,291 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:45] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:46,278 - src.transcriber - INFO - Temporary audio file removed
+2024-11-05 00:08:46,294 - YouTubeTranscriber - INFO - Video processed successfully: q6nPR9LzL_0
+2024-11-05 00:08:47,296 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:47] "GET /status/q6nPR9LzL_0 HTTP/1.1" 200 -
+2024-11-05 00:08:50,288 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:08:50] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 00:25:34,917 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:25:34,917 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:25:35,635 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:25:35,635 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:25:35,636 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:25:35,654 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-05 00:25:35,655 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-05 00:25:35,657 - werkzeug - INFO -  * Restarting with stat
+2024-11-05 00:25:38,127 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 00:25:38,128 - src.transcriber - INFO - Using device: cpu
+2024-11-05 00:25:38,794 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 00:25:38,795 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 00:25:38,795 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 00:25:38,803 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 00:25:38,815 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-05 00:25:59,687 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:25:59] "GET / HTTP/1.1" 200 -
+2024-11-05 00:25:59,743 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:25:59] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 00:25:59,748 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:25:59] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 00:26:30,701 - src.transcriber - INFO - Starting video processing: https://www.youtube.com/watch?v=oMXUsPJ1RxA
+2024-11-05 00:26:30,701 - YouTubeTranscriber - INFO - Started transcription for video: oMXUsPJ1RxA
+2024-11-05 00:26:30,702 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:30] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-05 00:26:30,706 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:30] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:31,714 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:31] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:32,786 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:32] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:33,822 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:33] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:34,214 - src.transcriber - INFO - Downloading audio from YouTube...
+2024-11-05 00:26:34,831 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:34] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:35,917 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:35] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:36,982 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:36] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:37,986 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:37] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:38,166 - src.transcriber - INFO - Starting video processing: https://www.youtube.com/watch?v=oMXUsPJ1RxA
+2024-11-05 00:26:38,166 - YouTubeTranscriber - INFO - Started transcription for video: oMXUsPJ1RxA
+2024-11-05 00:26:38,172 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:38] "[35m[1mPOST /transcribe HTTP/1.1[0m" 202 -
+2024-11-05 00:26:38,203 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:38] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:39,005 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:39] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:39,208 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:39] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:40,116 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:40] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:40,290 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:40] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:41,247 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:41] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:41,374 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:41] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:42,269 - src.transcriber - INFO - Downloading audio from YouTube...
+2024-11-05 00:26:42,305 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:42] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:42,512 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:42] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:43,314 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:43] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:43,516 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:43] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:44,418 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:44] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:44,608 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:44] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:45,467 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:45] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:45,683 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:45] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:46,482 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:46] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:46,701 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:46] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:47,447 - src.transcriber - ERROR - Error downloading video: [0;31mERROR:[0m Unable to rename file: [WinError 32] O arquivo já está sendo usado por outro processo: 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\downloads\\A FÓRMULA do PROMPT para CHATGPT PERFEITO! (Engenharia de Prompt).webm.part' -> 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\downloads\\A FÓRMULA do PROMPT para CHATGPT PERFEITO! (Engenharia de Prompt).webm'. Giving up after 3 retries
+2024-11-05 00:26:47,448 - src.transcriber - ERROR - Error processing video: Failed to download video
+2024-11-05 00:26:47,448 - YouTubeTranscriber - ERROR - Failed to process video: oMXUsPJ1RxA
+2024-11-05 00:26:47,499 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:47] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:47,716 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:26:47] "GET /status/oMXUsPJ1RxA HTTP/1.1" 200 -
+2024-11-05 00:26:47,952 - src.transcriber - INFO - Transcribing audio...
+2024-11-05 00:29:38,342 - src.transcriber - INFO - Temporary audio file removed
+2024-11-05 00:29:38,343 - src.transcriber - INFO - Transcription completed: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes\A FÓRMULA do PROMPT para CHATGPT PERFEITO! (Engenharia de Prompt)_transcricao.txt
+2024-11-05 00:29:38,343 - YouTubeTranscriber - INFO - Video processed successfully: oMXUsPJ1RxA
+2024-11-05 00:30:42,003 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:30:42] "GET / HTTP/1.1" 200 -
+2024-11-05 00:30:42,015 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:30:42] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 00:30:42,021 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 00:30:42] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 01:13:07,722 - werkzeug - INFO -  * Detected change in 'F:\\projetos\\videos\\transcrever videos\\youtube-transcriber\\src\\transcriber.py', reloading
+2024-11-05 01:13:08,125 - werkzeug - INFO -  * Restarting with stat
+2024-11-05 01:39:44,152 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 01:39:44,152 - src.transcriber - INFO - Using device: cpu
+2024-11-05 01:39:44,778 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 01:39:44,779 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 01:39:44,779 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 01:39:44,797 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.15:5000
+2024-11-05 01:39:44,797 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-11-05 01:39:44,799 - werkzeug - INFO -  * Restarting with stat
+2024-11-05 01:39:48,201 - YouTubeTranscriber - INFO - Using device: cpu
+2024-11-05 01:39:48,201 - src.transcriber - INFO - Using device: cpu
+2024-11-05 01:39:48,874 - src.transcriber - INFO - Loaded Whisper model: base
+2024-11-05 01:39:48,875 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\transcricoes
+2024-11-05 01:39:48,875 - src.transcriber - INFO - Directory ensured: F:\projetos\videos\transcrever videos\youtube-transcriber\downloads
+2024-11-05 01:39:48,884 - werkzeug - WARNING -  * Debugger is active!
+2024-11-05 01:39:48,896 - werkzeug - INFO -  * Debugger PIN: 771-376-064
+2024-11-05 01:40:01,868 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:01] "GET / HTTP/1.1" 200 -
+2024-11-05 01:40:01,877 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:01] "[33mGET /static/css/fontawesome.min.css HTTP/1.1[0m" 404 -
+2024-11-05 01:40:01,931 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:01] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 01:40:01,937 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:01] "GET /transcricoes HTTP/1.1" 200 -
+2024-11-05 01:40:05,557 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:05] "GET / HTTP/1.1" 200 -
+2024-11-05 01:40:05,566 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:05] "[33mGET /static/css/fontawesome.min.css HTTP/1.1[0m" 404 -
+2024-11-05 01:40:05,566 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:05] "[36mGET /static/css/main.css HTTP/1.1[0m" 304 -
+2024-11-05 01:40:05,572 - werkzeug - INFO - 192.168.1.15 - - [05/Nov/2024 01:40:05] "GET /transcricoes HTTP/1.1" 200 -

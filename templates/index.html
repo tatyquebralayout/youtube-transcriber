@@ -3,249 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transcritor de Vídeos do YouTube - Converta áudio em texto facilmente">
     <title>Transcritor de Vídeos do YouTube</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!-- Inclui cópia local do Font Awesome como fallback -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+    <!-- CDN do Font Awesome com integridade e crossorigin -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-Fg7o6Ul6eGqC28w9YvY06JQ4d1YtK5cYj9aXChgFQpr+3iZTtX4k/uBbO6ZDAu0C" crossorigin="anonymous">
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-center mb-8">
-            Transcritor de Vídeos do YouTube
-        </h1>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">
+                <i class="fas fa-closed-captioning"></i>
+                Transcritor de Vídeos do YouTube
+            </h1>
+            <p class="subtitle">Transforme o conteúdo dos seus vídeos em texto de forma simples e rápida</p>
+        </header>
 
-        <!-- Formulário -->
-        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mb-6">
-            <form id="transcribe-form" class="space-y-4">
-                <div>
-                    <label for="youtube-url" class="block text-gray-700 font-medium mb-2">
+        <!-- Card Principal -->
+        <div class="card" id="main-card">
+            <form id="transcribe-form" class="transcribe-form">
+                <div class="input-wrapper">
+                    <label for="youtube-url" class="input-label">
+                        <i class="fas fa-link"></i>
                         URL do Vídeo
                     </label>
-                    <input type="text" 
-                           id="youtube-url" 
-                           name="url"
-                           class="w-full p-2 border rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                           placeholder="https://www.youtube.com/watch?v=...">
+                    <input 
+                        type="url" 
+                        id="youtube-url" 
+                        name="url" 
+                        required
+                        placeholder="https://www.youtube.com/watch?v=..."
+                    >
                 </div>
-                <button type="submit" 
-                        class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-magic"></i>
                     Transcrever
                 </button>
             </form>
-        </div>
 
-        <!-- Status e Progresso -->
-        <div id="status-container" class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mb-6">
-            <!-- Links Sociais -->
-            <div class="flex justify-center space-x-4 mb-4">
-                <a href="https://github.com/tatyquebralayout" target="_blank" 
-                   class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
-                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    GitHub
-                </a>
-                <a href="https://x.com/umataldetatiana" target="_blank"
-                   class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
-                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                    Twitter
-                </a>
-            </div>
-
-            <!-- Mensagem Promocional Fixa -->
-            <div id="promo-message" class="text-center text-lg font-medium text-blue-600 mb-4">
-                Siga a Tati nas redes sociais e confira mais projetos incríveis! ✨
-            </div>
-
-            <!-- Status atual e Mensagens -->
-            <div class="space-y-4">
-                <div id="fun-message" class="text-center text-lg font-medium text-blue-600 mb-2 min-h-[3rem]"></div>
-                <div id="status-message" class="text-center text-gray-700"></div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                    <div id="progress-bar" class="bg-blue-500 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            <!-- Status e Progresso -->
+            <div id="status-container" class="status-container hidden">
+                <div class="status-header">
+                    <span id="status-message" class="status-message"></span>
+                    <span id="progress-percentage" class="progress-percentage">0%</span>
                 </div>
+                
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+
+                <div id="fun-message" class="fun-message"></div>
             </div>
         </div>
 
         <!-- Lista de Transcrições -->
-        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-bold mb-4">Transcrições Disponíveis</h2>
-            <div id="transcriptions-list" class="space-y-3">
-                <!-- As transcrições serão inseridas aqui -->
+        <section class="transcriptions-section">
+            <h2 class="section-title">
+                <i class="fas fa-history"></i>
+                Transcrições Disponíveis
+            </h2>
+            <div id="transcriptions-list" class="transcription-list">
+                <!-- Preenchido via JavaScript -->
             </div>
-        </div>
+        </section>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
     </div>
 
     <script>
-        // Array de mensagens promocionais para rotação
-        const promoMessages = [
-           "Deixe sua ⭐ no meu GitHub e acompanhe meus próximos projetos! 💫",
-           "Veja meus novos projetos no GitHub e colabore com a comunidade! 🚀",
-           "Siga @umataldetatiana no Twitter e acompanhe as novidades do mundo dev! 🐦"
-        ];
-
-        // Função para iniciar a rotação de mensagens promocionais, se houver mais de uma mensagem
-        if (promoMessages.length > 1) {
-            let currentMessageIndex = 0;
-
-            function rotatePromoMessage() {
-                const promoElement = document.getElementById('promo-message');
-                currentMessageIndex = (currentMessageIndex + 1) % promoMessages.length;
-
-                let message = promoMessages[currentMessageIndex];
-                if (message.includes('github.com/tatyquebralayout')) {
-                    message = message.replace(
-                        'github.com/tatyquebralayout',
-                        '<a href="https://github.com/tatyquebralayout" target="_blank" class="text-blue-600 hover:text-blue-800 underline">github.com/tatyquebralayout</a>'
-                    );
-                }
-                if (message.includes('@umataldetatiana')) {
-                    message = message.replace(
-                        '@umataldetatiana',
-                        '<a href="https://x.com/umataldetatiana" target="_blank" class="text-blue-600 hover:text-blue-800 underline">@umataldetatiana</a>'
-                    );
-                }
-
-                promoElement.innerHTML = message;
+        class TranscriptionManager {
+            constructor() {
+                this.form = document.getElementById('transcribe-form');
+                this.statusContainer = document.getElementById('status-container');
+                this.progressBar = document.getElementById('progress-bar');
+                this.statusMessage = document.getElementById('status-message');
+                this.progressPercentage = document.getElementById('progress-percentage');
+                this.funMessage = document.getElementById('fun-message');
+                this.transcriptionsList = document.getElementById('transcriptions-list');
+                
+                this.setupEventListeners();
+                this.loadTranscriptions();
             }
 
-            // Rotaciona mensagens a cada 5 segundos
-            setInterval(rotatePromoMessage, 5000);
-        } else {
-            // Mostra a mensagem única sem rotação
-            document.getElementById('promo-message').innerHTML = promoMessages[0];
-        }
-
-        // Função para atualizar o progresso
-        function updateProgress(status, message, progress, funMessage) {
-            const statusContainer = document.getElementById('status-container');
-            const statusMessage = document.getElementById('status-message');
-            const funMessageElement = document.getElementById('fun-message');
-            const progressBar = document.getElementById('progress-bar');
-            
-            statusContainer.classList.remove('hidden');
-            statusMessage.textContent = message;
-            
-            // Adiciona links clicáveis nas mensagens divertidas
-            if (funMessage.includes('github.com/tatyquebralayout') || funMessage.includes('@umataldetatiana')) {
-                funMessage = funMessage
-                    .replace('github.com/tatyquebralayout', 
-                        '<a href="https://github.com/tatyquebralayout" target="_blank" class="text-blue-600 hover:text-blue-800 underline">github.com/tatyquebralayout</a>')
-                    .replace('@umataldetatiana',
-                        '<a href="https://x.com/umataldetatiana" target="_blank" class="text-blue-600 hover:text-blue-800 underline">@umataldetatiana</a>');
-                funMessageElement.innerHTML = funMessage;
-            } else {
-                funMessageElement.textContent = funMessage;
+            setupEventListeners() {
+                this.form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    try {
+                        await this.handleSubmit(e);
+                    } catch (error) {
+                        this.handleError(error);
+                    }
+                });
             }
-            
-            progressBar.style.width = `${progress}%`;
-            
-            if (status === 'completed' || status === 'error') {
+
+            async handleSubmit(e) {
+                const url = document.getElementById('youtube-url').value.trim();
+                
+                if (!this.validateYouTubeUrl(url)) {
+                    this.showToast('Por favor, insira uma URL válida do YouTube', 'error');
+                    return;
+                }
+
+                try {
+                    this.showStatus();
+                    this.updateProgress(0, 'Iniciando processo...', '🚀 Preparando tudo...');
+
+                    const response = await fetch('/transcribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url })
+                    });
+
+                    if (!response.ok) {
+                        const data = await response.json();
+                        throw new Error(data.error || 'Erro ao iniciar transcrição');
+                    }
+
+                    const data = await response.json();
+                    this.form.reset();
+                    this.checkStatus(data.video_id);
+                } catch (error) {
+                    this.handleError(error);
+                }
+            }
+
+            validateYouTubeUrl(url) {
+                // Expressão regular aprimorada para validar URLs do YouTube
+                const pattern = /^(https?:\/\/)?((www\.)?youtube\.com|youtu\.be)\/.+$/;
+                return pattern.test(url);
+            }
+
+            sanitizeHTML(str) {
+                const temp = document.createElement('div');
+                temp.textContent = str;
+                return temp.innerHTML;
+            }
+
+            showStatus() {
+                this.statusContainer.classList.remove('hidden');
+            }
+
+            hideStatus() {
+                this.statusContainer.classList.add('hidden');
+            }
+
+            updateProgress(progress, message, funMessage) {
+                this.progressBar.style.width = `${Math.max(0, progress)}%`;
+                this.progressPercentage.textContent = `${Math.max(0, progress)}%`;
+                this.statusMessage.textContent = this.sanitizeHTML(message);
+                this.funMessage.textContent = this.sanitizeHTML(funMessage);
+
+                if (progress === 100) {
+                    setTimeout(() => {
+                        this.hideStatus();
+                        this.loadTranscriptions();
+                    }, 2000);
+                }
+            }
+
+            async checkStatus(videoId) {
+                try {
+                    const response = await fetch(`/status/${encodeURIComponent(videoId)}`);
+                    if (!response.ok) {
+                        throw new Error('Erro ao obter status da transcrição');
+                    }
+                    const data = await response.json();
+
+                    this.updateProgress(
+                        data.progress,
+                        data.message,
+                        data.fun_message
+                    );
+
+                    if (!['completed', 'error'].includes(data.status)) {
+                        setTimeout(() => this.checkStatus(videoId), 1000);
+                    }
+                } catch (error) {
+                    this.handleError(error);
+                }
+            }
+
+            formatDate(isoString) {
+                return new Date(isoString).toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            async loadTranscriptions() {
+                try {
+                    const response = await fetch('/transcricoes');
+                    if (!response.ok) {
+                        throw new Error('Erro ao carregar transcrições');
+                    }
+                    const data = await response.json();
+
+                    const sanitizedFiles = data.files.map(file => ({
+                        name: this.sanitizeHTML(file.name),
+                        date: this.sanitizeHTML(file.date)
+                    }));
+
+                    this.transcriptionsList.innerHTML = sanitizedFiles
+                        .sort((a, b) => new Date(b.date) - new Date(a.date))
+                        .map(file => this.createTranscriptionItem(file))
+                        .join('');
+                } catch (error) {
+                    this.handleError(error);
+                }
+            }
+
+            createTranscriptionItem(file) {
+                return `
+                    <div class="transcription-item">
+                        <div class="transcription-info">
+                            <h3 class="transcription-title">${file.name}</h3>
+                            <span class="transcription-date">
+                                <i class="far fa-clock"></i>
+                                ${this.formatDate(file.date)}
+                            </span>
+                        </div>
+                        <a href="/download/${encodeURIComponent(file.name)}" 
+                           class="btn btn-secondary download-btn">
+                            <i class="fas fa-download"></i>
+                            Baixar
+                        </a>
+                    </div>
+                `;
+            }
+
+            showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.textContent = this.sanitizeHTML(message);
+
+                const container = document.getElementById('toast-container');
+                container.appendChild(toast);
+
                 setTimeout(() => {
-                    loadTranscriptions();
+                    toast.classList.add('toast-fade-out');
+                    setTimeout(() => container.removeChild(toast), 300);
                 }, 3000);
             }
-        }
 
-        // Função para verificar o status
-        async function checkStatus(videoId) {
-            try {
-                const response = await fetch(`/status/${videoId}`);
-                const data = await response.json();
-                
-                updateProgress(
-                    data.status, 
-                    data.message, 
-                    data.progress,
-                    data.fun_message
-                );
-                
-                if (data.status !== 'completed' && data.status !== 'error') {
-                    setTimeout(() => checkStatus(videoId), 1000);
-                }
-            } catch (error) {
-                console.error('Erro ao verificar status:', error);
-                updateProgress(
-                    'error', 
-                    'Erro ao verificar status', 
-                    0,
-                    'Ops! Algo deu errado... 😅'
-                );
-            }
-        }
-
-        // Função para formatar data
-        function formatDate(isoString) {
-            return new Date(isoString).toLocaleString('pt-BR');
-        }
-
-        // Função para carregar lista de transcrições
-        async function loadTranscriptions() {
-            try {
-                const response = await fetch('/transcricoes');
-                const data = await response.json();
-                const list = document.getElementById('transcriptions-list');
-                
-                list.innerHTML = data.files
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .map(file => `
-                        <div class="p-4 bg-gray-50 rounded hover:bg-gray-100 transition-colors">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <div class="font-medium">${file.name}</div>
-                                    <div class="text-sm text-gray-600">${formatDate(file.date)}</div>
-                                </div>
-                                <a href="/download/${encodeURIComponent(file.name)}" 
-                                   class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
-                                    Baixar
-                                </a>
-                            </div>
-                        </div>
-                    `).join('');
-            } catch (error) {
-                console.error('Erro ao carregar transcrições:', error);
-            }
-        }
-
-        // Configurar o formulário
-        document.getElementById('transcribe-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const url = document.getElementById('youtube-url').value.trim();
-            
-            if (!url) {
-                alert('Por favor, insira uma URL do YouTube');
-                return;
-            }
-            
-            try {
-                updateProgress('starting', 'Iniciando...', 0, 'Preparando tudo... 🚀');
-                
-                const response = await fetch('/transcribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ url })
-                });
-
-                const data = await response.json();
-                
-                if (response.ok) {
-                    document.getElementById('youtube-url').value = '';
-                    checkStatus(data.video_id);
-                } else {
-                    updateProgress('error', data.error || 'Erro ao iniciar transcrição', 0, 'Ops! Algo deu errado... 😅');
-                }
-            } catch (error) {
+            handleError(error) {
                 console.error('Erro:', error);
-                updateProgress('error', 'Erro ao conectar com o servidor', 0, 'Ops! Algo deu errado... 😅');
+                let errorMessage = 'Ocorreu um erro inesperado';
+                if (error instanceof TypeError) {
+                    errorMessage = 'Erro de rede ou servidor indisponível';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+                this.showToast(errorMessage, 'error');
+                this.hideStatus();
             }
-        });
+        }
 
-        // Inicializar
-        document.getElementById('status-container').classList.remove('hidden');
-        loadTranscriptions();
-        rotatePromoMessage();
+        // Inicializar o gerenciador
+        new TranscriptionManager();
     </script>
 </body>
 </html>
