@@ -460,6 +460,8 @@ class Transcriber:
             directory.mkdir(parents=True, exist_ok=True)
             logger.info(f"Directory ensured: {directory}")
 
+
+
     def get_video_metadata(self, url: str) -> Optional[VideoMetadata]:
         """
         Obtém metadados do vídeo do YouTube.
@@ -880,12 +882,5 @@ class Transcriber:
             logger.error(f"Error estimating processing time: {e}")
             return duration_seconds  # Retorna a própria duração como fallback
 
-    @staticmethod
-    def get_version() -> str:
-        """
-        Retorna a versão atual do Transcriber.
-        
-        Returns:
-            str: Versão atual
-        """
-        return "1.0.0"
+  
+       

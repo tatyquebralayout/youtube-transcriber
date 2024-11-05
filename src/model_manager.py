@@ -2,11 +2,8 @@ from typing import Optional, Dict, Any
 import torch
 import torch.nn as nn
 import logging
-import warnings
 import whisper
 from dataclasses import dataclass
-from pathlib import Path
-import numpy as np
 
 @dataclass
 class ModelConfig:
@@ -46,68 +43,54 @@ class ModelManager:
 
     def _setup_environment(self) -> None:
         """Configura o ambiente PyTorch"""
-        # Configura o número de threads
         if self.config.device == "cpu":
             torch.set_num_threads(self.config.num_workers)
         
-        # Configura o tipo de computação
-        torch.set_default_dtype(torch.float32 if self.config.compute_type == "float32" else torch.float16)
+        torch.set_default_dtype(
+            torch.float32 if self.config.compute_type == "float32" else torch.float16
+        )
         
-        # Ativa o benchmark mode se usando CUDA
         if torch.cuda.is_available():
             torch.backends.cudnn.benchmark = True
             
         self.logger.info(f"PyTorch configurado: device={self.config.device}, "
-                        f"compute_type={self.config.compute_type}")
+                      f"compute_type={self.config.compute_type}")
 
     def _load_model(self) -> whisper.Whisper:
         """Carrega e otimiza o modelo Whisper."""
         try:
-            # Carrega o modelo base
             model = whisper.load_model(self.config.model_size)
-            
-            # Move para o dispositivo apropriado
             model = model.to(self.config.device)
-            
-            # Otimiza o modelo para inferência
+
             if self.config.device == "cuda":
                 model = self._optimize_for_inference(model)
-            
+
             self.logger.info(f"Modelo {self.config.model_size} carregado com sucesso")
             return model
-            
+
         except Exception as e:
             self.logger.error(f"Erro ao carregar modelo: {str(e)}")
             raise
 
     def _optimize_for_inference(self, model: nn.Module) -> nn.Module:
         """Otimiza o modelo para inferência."""
-        if self.config.device == "cuda":
-            # Converte para FP16 se disponível
-            if self.config.compute_type == "float16":
-                model = model.half()
-        
-        # Coloca o modelo em modo de avaliação
+        if self.config.device == "cuda" and self.config.compute_type == "float16":
+            model = model.half()
         model.eval()
-        
         return model
 
     @torch.no_grad()
     def transcribe(self, audio_path: str) -> Dict[str, Any]:
         """Transcreve um arquivo de áudio."""
         try:
-            # Carrega e processa o áudio
             audio = whisper.load_audio(audio_path)
             audio = whisper.pad_or_trim(audio)
             
-            # Calcula o mel spectrograma
             mel = whisper.log_mel_spectrogram(audio).to(self.config.device)
             
-            # Detecta o idioma
             _, probs = self.model.detect_language(mel)
             detected_lang = max(probs, key=probs.get)
             
-            # Realiza a transcrição
             options = {
                 "beam_size": self.config.beam_size,
                 "language": detected_lang,
@@ -115,8 +98,6 @@ class ModelManager:
             }
             
             result = self.model.transcribe(audio_path, **options)
-            
-            # Atualiza estatísticas
             self._update_stats()
             
             return {
@@ -135,7 +116,7 @@ class ModelManager:
         self.stats["total_processed"] += 1
         
         if torch.cuda.is_available():
-            self.stats["gpu_memory_used"] = torch.cuda.max_memory_allocated() / 1024**3  # GB
+            self.stats["gpu_memory_used"] = torch.cuda.max_memory_allocated() / 1024**3
 
     def get_stats(self) -> Dict[str, float]:
         """Retorna estatísticas de uso do modelo"""

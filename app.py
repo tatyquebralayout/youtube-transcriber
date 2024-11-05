@@ -9,8 +9,9 @@ import os
 import secrets
 from threading import Thread
 
-from src.transcriber import Transcriber, TranscriberConfig
 from src.messages import Messages
+from src.transcriber import Transcriber, TranscriberConfig
+
 
 # Configuração de logging
 logging.basicConfig(level=logging.INFO)

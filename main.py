@@ -32,15 +32,16 @@ MODELS: Dict[str, Tuple[str, str, str]] = {
     "4": ("medium", "Alta precisão", "~8GB RAM"),
     "5": ("large", "Máxima precisão", "~16GB RAM")
 }
-
 class YouTubeTranscriberCLI:
     """Interface de linha de comando para o YouTube Transcriber"""
 
-    def __init__(self):
+    def __init__(self, vault_path: str):
         self.console = Console(theme=THEME)
         self.base_dir = Path(__file__).parent
         self.messages = Messages()  # Instancia o gerenciador de mensagens
+        self.vault_path = vault_path  # Armazena o vault_path
         self.setup_logging()
+
 
     def setup_logging(self) -> None:
         """Configura o sistema de logging"""
@@ -141,42 +142,28 @@ class YouTubeTranscriberCLI:
             self.console.print("[error]Escolha inválida. Tente novamente.[/error]")
 
     def process_video(self, url: str, model_size: str, keep_audio: bool) -> None:
-        """Processa o vídeo com barra de progresso"""
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("[progress.description]{task.description}"),
-            BarColumn(),
-            TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-            TimeElapsedColumn(),
-            console=self.console
-        ) as progress:
-            task = progress.add_task("[cyan]Processando...", total=100)
-            
-            def update_progress(percent: float):
-                progress.update(task, completed=percent * 100)
-                # Atualiza a mensagem de status
-                state = self.messages._get_state_from_progress(int(percent * 100))
-                message = self.messages.get_message(int(percent * 100))
-                progress.update(task, description=f"[cyan]{message}")
+    # ... código omitido ...
 
-            try:
-                transcriber = Transcriber(
-                    model_size=model_size,
-                    output_dir=self.base_dir / 'transcricoes',
-                    downloads_dir=self.base_dir / 'downloads',
-                    keep_audio=keep_audio
-                )
-                
-                success = transcriber.process_video(url)
-                
-                if success:
-                    self.show_success_message()
-                else:
-                    self.show_error_message("Falha no processamento do vídeo")
-                    
-            except Exception as e:
-                self.logger.error(f"Erro no processamento: {str(e)}")
-                self.show_error_message(str(e))
+    try:
+        transcriber = Transcriber(
+            model_size=model_size,
+            output_dir=self.base_dir / 'transcricoes',
+            downloads_dir=self.base_dir / 'downloads',
+            keep_audio=keep_audio,
+            obsidian_vault=self.vault_path  # Usa o vault_path armazenado
+        )
+        
+        success = transcriber.process_video(url)
+        
+        if success:
+            self.show_success_message()
+        else:
+            self.show_error_message("Falha no processamento do vídeo")
+            
+    except Exception as e:
+        self.logger.error(f"Erro no processamento: {str(e)}")
+        self.show_error_message(str(e))
+
 
     def show_success_message(self) -> None:
         """Exibe mensagem de sucesso"""
@@ -236,16 +223,8 @@ def main():
         if not os.path.exists(VAULT_PATH):
             raise ValueError(f"O caminho do vault '{VAULT_PATH}' não existe.")
         
-        # Cria a instância do transcriber com o caminho do vault
-        transcriber = Transcriber(
-            model_size="base",
-            output_dir="transcricoes",
-            downloads_dir="downloads",
-            obsidian_vault=VAULT_PATH
-        )
-        
-        # Resto do seu código...
-        cli = YouTubeTranscriberCLI()
+        # Cria a instância do CLI passando o VAULT_PATH
+        cli = YouTubeTranscriberCLI(vault_path=VAULT_PATH)
         cli.run()
         
     except Exception as e:
