@@ -211,7 +211,7 @@ class Transcriber:
                     for segment in result["segments"]
                 ]
             )
-        except WhisperError as e:
+        except Exception as e:
             logger.error(f"Error transcribing audio: {e}")
             return None
 

@@ -43,3 +43,7 @@ transcricoes/
 # Sistema operacional
 .DS_Store
 Thumbs.db
+logs/ 
+app.log 
+origin) 
+estrutura.txt 
