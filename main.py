@@ -33,25 +33,6 @@ MODELS: Dict[str, Tuple[str, str, str]] = {
     "5": ("large", "Máxima precisão", "~16GB RAM")
 }
 
-# Definir o caminho do vault
-vault_path = r"F:\pasta estudos\Code Brain"
-# ou
-# vault_path = "F:/pasta estudos/Code Brain"
-
-# Verificar se o caminho do vault existe
-if not os.path.exists(vault_path):
-    raise ValueError(f"O caminho do vault '{vault_path}' não existe. Verifique se o caminho está correto.")
-else:
-    print("Caminho do vault verificado com sucesso.")
-
-# Instancia o Transcriber com o caminho do vault do Obsidian
-transcriber = Transcriber(
-    model_size="base",
-    output_dir="transcricoes",
-    downloads_dir="downloads",
-    obsidian_vault=vault_path
-)
-
 class YouTubeTranscriberCLI:
     """Interface de linha de comando para o YouTube Transcriber"""
 
@@ -246,6 +227,30 @@ class YouTubeTranscriberCLI:
             self.show_error_message(f"Erro inesperado: {str(e)}")
             sys.exit(1)
 
+def main():
+    # Configuração do vault do Obsidian
+    VAULT_PATH = r"F:\pasta estudos\Code Brain"
+    
+    try:
+        # Verifica se o caminho do vault existe
+        if not os.path.exists(VAULT_PATH):
+            raise ValueError(f"O caminho do vault '{VAULT_PATH}' não existe.")
+        
+        # Cria a instância do transcriber com o caminho do vault
+        transcriber = Transcriber(
+            model_size="base",
+            output_dir="transcricoes",
+            downloads_dir="downloads",
+            obsidian_vault=VAULT_PATH
+        )
+        
+        # Resto do seu código...
+        cli = YouTubeTranscriberCLI()
+        cli.run()
+        
+    except Exception as e:
+        logging.getLogger(__name__).error(f"Erro na inicialização: {e}")
+        sys.exit(1)
+
 if __name__ == "__main__":
-    cli = YouTubeTranscriberCLI()
-    cli.run()
+    main()

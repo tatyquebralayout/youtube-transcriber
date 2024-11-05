@@ -2,10 +2,15 @@
 
 import os
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional
+import re
+from datetime import datetime
+import yaml
+from rich.console import Console
+import logging
+from dataclasses import dataclass
 
 import whisper
-from rich.console import Console
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
@@ -15,68 +20,193 @@ console = Console()
 from nltk.corpus import stopwords
 import nltk
 
+@dataclass
+class VideoMetadata:
+    title: str
+    url: str
+    channel: str
+    channel_url: str
+    duration: str
+    tags: list[str]
+    view_count: int
+    like_count: int
+    upload_date: str
+    transcript_date: str = None
+
 class ObsidianIntegration:
-    def __init__(self, vault_path: str):
+    def __init__(self, vault_path: str, template_path: Optional[str] = None):
         """
         Inicializa a integração com o Obsidian.
 
         Args:
             vault_path: Caminho para o vault do Obsidian
+            template_path: Caminho opcional para um template personalizado
         """
         self.vault_path = Path(vault_path)
+        self.template_path = Path(template_path) if template_path else None
+        self.console = Console()
+        self.logger = logging.getLogger(__name__)
+        
         if not self.vault_path.exists():
-            raise ValueError(f"Vault path {vault_path} does not exist")
+            raise ValueError(f"Vault path '{vault_path}' does not exist")
+        
+        # Cria diretório de transcrições se não existir
+        self.transcriptions_dir = self.vault_path / "Transcrições"
+        self.transcriptions_dir.mkdir(exist_ok=True)
 
-    def process_transcription(self, video_data: Dict[str, Any], transcription: str):
+    def process_transcription(self, video_data: Dict[str, Any], transcription: str) -> Path:
         """
         Cria uma nota no Obsidian com a transcrição do vídeo.
 
         Args:
             video_data: Dicionário contendo metadados do vídeo
             transcription: Texto da transcrição
-        """
-        note_content = self._format_note_content(video_data, transcription)
-        note_title = self._sanitize_filename(video_data['title'])
-        note_path = self.vault_path / f"{note_title}.md"
-
-        with open(note_path, 'w', encoding='utf-8') as note_file:
-            note_file.write(note_content)
-
-    def _format_note_content(self, video_data: Dict[str, Any], transcription: str) -> str:
-        """
-        Formata o conteúdo da nota.
-
-        Args:
-            video_data: Dicionário contendo metadados do vídeo
-            transcription: Texto da transcrição
 
         Returns:
-            Conteúdo formatado da nota
+            Path: Caminho da nota criada
         """
-        return (
-            f"# {video_data['title']}\n\n"
-            f"**Canal:** [{video_data['channel']}]({video_data['channel_url']})\n"
-            f"**Duração:** {video_data['duration']}\n"
-            f"**Visualizações:** {video_data['view_count']:,}\n"
-            f"**Likes:** {video_data['like_count']:,}\n"
-            f"**Data de Upload:** {video_data['upload_date']}\n"
-            f"**URL:** {video_data['url']}\n"
-            f"**Tags:** {', '.join(video_data['tags'])}\n\n"
-            f"## Transcrição\n\n"
-            f"{transcription}"
-        )
+        try:
+            # Converte dados do vídeo para VideoMetadata
+            metadata = VideoMetadata(
+                title=video_data['title'],
+                url=video_data['url'],
+                channel=video_data['channel'],
+                channel_url=video_data['channel_url'],
+                duration=video_data['duration'],
+                tags=video_data['tags'],
+                view_count=video_data['view_count'],
+                like_count=video_data['like_count'],
+                upload_date=video_data['upload_date'],
+                transcript_date=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            )
+
+            # Formata o conteúdo da nota
+            note_content = self._format_note_content(metadata, transcription)
+            
+            # Cria o arquivo da nota
+            note_path = self._create_note_file(metadata, note_content)
+            
+            self.logger.info(f"Created Obsidian note: {note_path}")
+            return note_path
+
+        except Exception as e:
+            self.logger.error(f"Error processing transcription: {e}")
+            raise
+
+    def _format_note_content(self, metadata: VideoMetadata, transcription: str) -> str:
+        """
+        Formata o conteúdo da nota usando YAML frontmatter e markdown.
+        """
+        # YAML frontmatter
+        frontmatter = {
+            'title': metadata.title,
+            'url': metadata.url,
+            'channel': metadata.channel,
+            'channel_url': metadata.channel_url,
+            'duration': metadata.duration,
+            'view_count': metadata.view_count,
+            'like_count': metadata.like_count,
+            'upload_date': metadata.upload_date,
+            'transcript_date': metadata.transcript_date,
+            'tags': ['transcrição', 'youtube'] + metadata.tags
+        }
+
+        # Converte frontmatter para YAML
+        yaml_content = yaml.dump(frontmatter, allow_unicode=True, sort_keys=False)
+
+        # Formata o conteúdo da nota
+        content = [
+            "---",
+            yaml_content,
+            "---",
+            "",
+            f"# {metadata.title}",
+            "",
+            "## Metadados",
+            f"- 📺 **Canal:** [{metadata.channel}]({metadata.channel_url})",
+            f"- ⏱️ **Duração:** {metadata.duration}",
+            f"- 👀 **Visualizações:** {metadata.view_count:,}",
+            f"- 👍 **Likes:** {metadata.like_count:,}",
+            f"- 📅 **Data de Upload:** {metadata.upload_date}",
+            f"- 🔄 **Data da Transcrição:** {metadata.transcript_date}",
+            "",
+            "## Transcrição",
+            "",
+            transcription
+        ]
+
+        return "\n".join(content)
+
+    def _create_note_file(self, metadata: VideoMetadata, content: str) -> Path:
+        """
+        Cria o arquivo da nota no vault do Obsidian.
+        """
+        # Sanitiza o título para usar como nome do arquivo
+        safe_title = self._sanitize_filename(metadata.title)
+        
+        # Adiciona a data da transcrição ao nome do arquivo
+        date_prefix = datetime.now().strftime("%Y%m%d")
+        filename = f"{date_prefix} - {safe_title}.md"
+        
+        # Caminho completo da nota
+        note_path = self.transcriptions_dir / filename
+        
+        # Escreve o conteúdo no arquivo
+        note_path.write_text(content, encoding='utf-8')
+        
+        return note_path
 
     def _sanitize_filename(self, filename: str) -> str:
         """
-        Sanitiza o nome do arquivo para ser usado como título da nota.
-
-        Args:
-            filename: Nome do arquivo
-
-        Returns:
-            Nome do arquivo sanitizado
+        Sanitiza o nome do arquivo removendo caracteres inválidos.
         """
-        return "".join(c for c in filename if c.isalnum() or c in (' ', '_')).rstrip()
+        # Remove caracteres inválidos
+        sanitized = re.sub(r'[<>:"/\\|?*]', '', filename)
+        # Remove espaços múltiplos
+        sanitized = re.sub(r'\s+', ' ', sanitized)
+        # Limita o tamanho do nome do arquivo
+        sanitized = sanitized[:100].strip()
+        
+        return sanitized
+
+    def get_template(self) -> Optional[str]:
+        """
+        Carrega o template personalizado se existir.
+        """
+        if self.template_path and self.template_path.exists():
+            return self.template_path.read_text(encoding='utf-8')
+        return None
+
+    def create_index_note(self) -> None:
+        """
+        Cria ou atualiza uma nota índice com links para todas as transcrições.
+        """
+        index_content = [
+            "# 📝 Índice de Transcrições",
+            "",
+            "Este é um índice automático de todas as transcrições de vídeos.",
+            "",
+            "## Transcrições Recentes",
+            ""
+        ]
+
+        # Lista todas as transcrições e ordena por data
+        transcriptions = sorted(
+            self.transcriptions_dir.glob("*.md"),
+            key=lambda x: x.stat().st_mtime,
+            reverse=True
+        )
+
+        # Adiciona links para cada transcrição
+        for note_path in transcriptions:
+            if note_path.name != "Índice de Transcriç��es.md":
+                link_name = note_path.stem.split(" - ", 1)[1] if " - " in note_path.stem else note_path.stem
+                date = datetime.fromtimestamp(note_path.stat().st_mtime).strftime("%d/%m/%Y")
+                index_content.append(f"- {date} - [[{note_path.stem}|{link_name}]]")
+
+        # Salva o índice
+        index_path = self.transcriptions_dir / "Índice de Transcrições.md"
+        index_path.write_text("\n".join(index_content), encoding='utf-8')
 
 def get_stop_words(language_code):
     LANGUAGE_CODE_MAP = {

@@ -77,26 +77,22 @@ class Messages:
             MessageTemplate("Siga para mais atualizações", "👋"),
         ]
 
-    def get_message(self, state: TranscriptionState) -> str:
+    def get_message(self, progress: int) -> str:
         """
-        Retorna uma mensagem apropriada baseada no estado atual.
+        Retorna uma mensagem apropriada baseada no progresso atual.
 
         Args:
-            state: Estado atual do processo
+            progress: Número inteiro representando o progresso (0-100) ou -1 para erro
 
         Returns:
             Mensagem formatada com emoji (se habilitado)
         """
         with self._lock:
             self._message_counter += 1
-            self._promo_counter += 1
-
-            # Controla a frequência das mensagens promocionais (a cada 10 mensagens)
-            if self._promo_counter >= 10:
-                self._promo_counter = 0
-                template = random.choice(self._promo_messages)
-                return self._format_message(template)
-
+            
+            # Mapeia o progresso para um estado
+            state = self._get_state_from_progress(progress)
+            
             # Evita repetir a última mensagem
             available_messages = [
                 msg for msg in self._messages[state]
@@ -110,6 +106,31 @@ class Messages:
             self._last_message = template.text
 
             return self._format_message(template)
+
+    def _get_state_from_progress(self, progress: int) -> TranscriptionState:
+        """
+        Converte o progresso numérico em um estado de transcrição.
+
+        Args:
+            progress: Número inteiro representando o progresso (0-100) ou -1 para erro
+
+        Returns:
+            TranscriptionState correspondente
+        """
+        if progress < 0:
+            return TranscriptionState.ERROR
+        elif progress == 0:
+            return TranscriptionState.STARTING
+        elif progress < 30:
+            return TranscriptionState.DOWNLOADING
+        elif progress < 60:
+            return TranscriptionState.PROCESSING
+        elif progress < 80:
+            return TranscriptionState.TRANSCRIBING
+        elif progress < 100:
+            return TranscriptionState.FINISHING
+        else:
+            return TranscriptionState.COMPLETED
 
     def _format_message(self, template: MessageTemplate) -> str:
         """Formata a mensagem com ou sem emojis."""

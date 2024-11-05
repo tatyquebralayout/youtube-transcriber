@@ -1,5 +1,3 @@
-import whisper
-import yt_dlp
 from pathlib import Path
 import torch
 import os
@@ -9,9 +7,11 @@ from typing import Dict, Optional, Tuple, Any
 from dataclasses import dataclass
 import logging
 from rich.console import Console
-from .obsidian_integration import ObsidianIntegration  # Adicionado
-from werkzeug.utils import secure_filename  # Adicionado
-from yt_dlp.utils import DownloadError  # Adicionado
+from werkzeug.utils import secure_filename
+from yt_dlp.utils import DownloadError
+import whisper
+import yt_dlp
+from .obsidian_integration import ObsidianIntegration, VideoMetadata  # Updated import
 
 # Configuração de logging
 logger = logging.getLogger(__name__)
@@ -21,18 +21,8 @@ console = Console()
 warnings.filterwarnings("ignore", category=UserWarning, module="whisper.transcribe")
 warnings.filterwarnings("ignore", category=FutureWarning, module="whisper")
 
-@dataclass
-class VideoMetadata:
-    """Estrutura de dados para metadados do vídeo"""
-    title: str
-    channel: str
-    channel_url: str
-    duration: str
-    description: str
-    tags: list
-    view_count: int
-    like_count: int
-    upload_date: str
+# Caminho padrão para o vault do Obsidian
+OBSIDIAN_VAULT = r"F:\pasta estudos\Code Brain"
 
 class Transcriber:
     """Classe responsável pela transcrição de vídeos do YouTube"""
@@ -44,7 +34,7 @@ class Transcriber:
         downloads_dir: str = "downloads",
         keep_audio: bool = False,
         device: Optional[str] = None,
-        obsidian_vault: Optional[str] = None  # Adicionado
+        obsidian_vault: Optional[str] = OBSIDIAN_VAULT  # Usando o valor padrão
     ):
         """
         Inicializa o transcritor.
@@ -55,28 +45,32 @@ class Transcriber:
             downloads_dir: Diretório para downloads temporários
             keep_audio: Se deve manter o arquivo de áudio após a transcrição
             device: Dispositivo para processamento ("cpu" ou "cuda")
-            obsidian_vault: Caminho para o vault do Obsidian  # Adicionado
+            obsidian_vault: Caminho para o vault do Obsidian
         """
         self.model_size = model_size
         self.output_dir = Path(output_dir)
         self.downloads_dir = Path(downloads_dir)
         self.keep_audio = keep_audio
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        self.obsidian_vault = obsidian_vault  # Adicionado
+        self.obsidian_vault = obsidian_vault
         logger.info(f"Using device: {self.device}")
         
         # Verificação do caminho do vault
         if self.obsidian_vault:
-            if not os.path.exists(self.obsidian_vault):
-                raise ValueError(f"O caminho do vault '{self.obsidian_vault}' não existe. Verifique se o caminho está correto.")
-            else:
-                logger.info("Caminho do vault verificado com sucesso.")
+            try:
+                if not os.path.exists(self.obsidian_vault):
+                    raise ValueError(f"O caminho do vault '{self.obsidian_vault}' não existe.")
+                self.obsidian = ObsidianIntegration(vault_path=self.obsidian_vault)
+                logger.info(f"Obsidian integration initialized with vault: {self.obsidian_vault}")
+            except Exception as e:
+                logger.error(f"Error initializing Obsidian integration: {e}")
+                raise
         
         # Carregamento do modelo
         try:
             self.model = whisper.load_model(model_size, device=self.device)
             logger.info(f"Loaded Whisper model: {model_size}")
-        except Exception as e:  # Captura qualquer exceção durante o carregamento do modelo
+        except Exception as e:
             logger.error(f"Error loading Whisper model: {e}")
             raise
         
@@ -84,28 +78,6 @@ class Transcriber:
         for directory in [self.output_dir, self.downloads_dir]:
             directory.mkdir(parents=True, exist_ok=True)
             logger.info(f"Directory ensured: {directory}")
-
-    @staticmethod
-    def format_timestamp(seconds: float) -> str:
-        """Converte segundos para formato HH:MM:SS"""
-        return str(timedelta(seconds=round(seconds)))
-
-    @staticmethod
-    def format_duration(seconds: int) -> str:
-        """
-        Formata a duração do vídeo em formato legível.
-        
-        Args:
-            seconds: Duração em segundos
-            
-        Returns:
-            String formatada (ex: "02h 30min 45s")
-        """
-        hours = seconds // 3600
-        minutes = (seconds % 3600) // 60
-        remaining_seconds = seconds % 60
-        
-        return f"{hours:02d}h {minutes:02d}min {remaining_seconds:02d}s"
 
     def get_video_metadata(self, url: str) -> Optional[VideoMetadata]:
         """
@@ -128,10 +100,10 @@ class Transcriber:
                 info = ydl.extract_info(url, download=False)
                 return VideoMetadata(
                     title=info.get('title', 'Título não disponível'),
+                    url=url,  # Added URL to metadata
                     channel=info.get('uploader', 'Canal não disponível'),
                     channel_url=info.get('uploader_url', ''),
                     duration=self.format_duration(info.get('duration', 0)),
-                    description=info.get('description', 'Descrição não disponível'),
                     tags=info.get('tags', []),
                     view_count=info.get('view_count', 0),
                     like_count=info.get('like_count', 0),
@@ -141,29 +113,97 @@ class Transcriber:
             logger.error(f"Error fetching video metadata: {e}")
             return None
 
-    def format_header(self, metadata: VideoMetadata, video_url: str) -> str:
+    def process_video(self, url: str) -> bool:
         """
-        Formata o cabeçalho da transcrição com metadados do vídeo.
+        Processa um vídeo do YouTube: baixa, extrai áudio e realiza a transcrição.
         
         Args:
-            metadata: Metadados do vídeo
-            video_url: URL original do vídeo
+            url: URL do vídeo do YouTube
             
         Returns:
-            Cabeçalho formatado
+            True se o processo for bem-sucedido, False caso contrário
         """
-        return "\n".join([
-            f"Título: {metadata.title}",
-            f"Canal: {metadata.channel} ({metadata.channel_url})",
-            f"Duração: {metadata.duration}",
-            f"Visualizações: {metadata.view_count:,}",
-            f"Likes: {metadata.like_count:,}",
-            f"Data de Upload: {metadata.upload_date}",
-            f"URL: {video_url}",
-            f"Descrição: {metadata.description}",
-            f"Tags: {', '.join(metadata.tags)}",
-            "\n--- Transcrição ---\n"
-        ])
+        logger.info(f"Starting video processing: {url}")
+        
+        try:
+            # Obtém metadados
+            metadata = self.get_video_metadata(url)
+            if not metadata:
+                raise ValueError("Failed to fetch video metadata")
+            
+            # Download do vídeo
+            logger.info("Downloading audio from YouTube...")
+            audio_path, video_title = self.download_youtube_video(url)
+            
+            if not audio_path or not video_title:
+                raise ValueError("Failed to download video")
+            
+            # Processa a transcrição
+            logger.info("Transcribing audio...")
+            transcription = self.transcribe_audio(audio_path)
+            if not transcription:
+                raise ValueError("Failed to transcribe audio")
+            
+            # Salva o resultado em arquivo texto
+            safe_title = secure_filename(video_title)
+            transcription_path = self.output_dir / f"{safe_title}_transcricao.txt"
+            transcription_path.write_text(transcription, encoding="utf-8")
+            
+            # Integração com Obsidian
+            if self.obsidian_vault:
+                try:
+                    # Converte metadata para dict para compatibilidade
+                    video_data = {
+                        'title': metadata.title,
+                        'url': url,
+                        'channel': metadata.channel,
+                        'channel_url': metadata.channel_url,
+                        'duration': metadata.duration,
+                        'tags': metadata.tags,
+                        'view_count': metadata.view_count,
+                        'like_count': metadata.like_count,
+                        'upload_date': metadata.upload_date
+                    }
+                    
+                    # Processa a transcrição no Obsidian
+                    self.obsidian.process_transcription(video_data, transcription)
+                    self.obsidian.create_index_note()  # Atualiza o índice
+                    logger.info(f"Created Obsidian note for video: {metadata.title}")
+                except Exception as e:
+                    logger.warning(f"Failed to create Obsidian note: {e}")
+            
+            # Limpa arquivos temporários
+            if not self.keep_audio and audio_path and os.path.exists(audio_path):
+                os.remove(audio_path)
+                logger.info("Temporary audio file removed")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error processing video: {e}")
+            return False
+
+    @staticmethod
+    def format_timestamp(seconds: float) -> str:
+        """Converte segundos para formato HH:MM:SS"""
+        return str(timedelta(seconds=round(seconds)))
+
+    @staticmethod
+    def format_duration(seconds: int) -> str:
+        """
+        Formata a duração do vídeo em formato legível.
+        
+        Args:
+            seconds: Duração em segundos
+            
+        Returns:
+            String formatada (ex: "02h 30min 45s")
+        """
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        remaining_seconds = seconds % 60
+        
+        return f"{hours:02d}h {minutes:02d}min {remaining_seconds:02d}s"
 
     def download_youtube_video(self, url: str) -> Tuple[Optional[str], Optional[str]]:
         """
@@ -190,6 +230,9 @@ class Transcriber:
         except DownloadError as e:
             logger.error(f"Error downloading video: {e}")
             return None, None
+        except Exception as e:
+            logger.error(f"Unexpected error downloading video: {e}")
+            return None, None
 
     def transcribe_audio(self, audio_path: str) -> Optional[str]:
         """
@@ -214,79 +257,3 @@ class Transcriber:
         except Exception as e:
             logger.error(f"Error transcribing audio: {e}")
             return None
-
-    def process_video(self, url: str) -> bool:
-        """
-        Processa um vídeo do YouTube: baixa, extrai áudio e realiza a transcrição.
-        
-        Args:
-            url: URL do vídeo do YouTube
-            
-        Returns:
-            True se o processo for bem-sucedido, False caso contrário
-        """
-        logger.info(f"Starting video processing: {url}")
-        
-        try:
-            # Obtém metadados
-            metadata = self.get_video_metadata(url)
-            if not metadata:
-                raise ValueError("Failed to fetch video metadata")
-            
-            # Prepara cabeçalho
-            header = self.format_header(metadata, url)
-            
-            # Download do vídeo
-            logger.info("Downloading audio from YouTube...")
-            audio_path, video_title = self.download_youtube_video(url)
-            
-            if not audio_path or not video_title:
-                raise ValueError("Failed to download video")
-            
-            # Processa a transcrição
-            safe_title = secure_filename(video_title)
-            transcription_path = self.output_dir / f"{safe_title}_transcricao.txt"
-            logger.info("Transcribing audio...")
-            
-            transcription = self.transcribe_audio(audio_path)
-            if not transcription:
-                raise ValueError("Failed to transcribe audio")
-            
-            # Salva o resultado
-            full_content = f"{header}\n{transcription}"
-            transcription_path.write_text(full_content, encoding="utf-8")
-            
-            # Limpa arquivos temporários
-            if not self.keep_audio and audio_path and os.path.exists(audio_path):
-                os.remove(audio_path)
-                logger.info("Temporary audio file removed")
-            
-            logger.info(f"Transcription completed: {transcription_path}")
-            
-            # Após a transcrição bem-sucedida
-            if self.obsidian_vault:
-                try:
-                    obsidian = ObsidianIntegration(vault_path=self.obsidian_vault)
-                    obsidian.process_transcription(
-                        video_data={
-                            'title': metadata.title,
-                            'url': url,
-                            'channel': metadata.channel,
-                            'channel_url': metadata.channel_url,
-                            'duration': metadata.duration,
-                            'tags': metadata.tags,
-                            'view_count': metadata.view_count,
-                            'like_count': metadata.like_count,
-                            'upload_date': metadata.upload_date
-                        },
-                        transcription=transcription
-                    )
-                    logger.info(f"Created Obsidian note for video: {metadata.title}")
-                except Exception as e:
-                    logger.warning(f"Failed to create Obsidian note: {e}")
-            
-            return True
-            
-        except Exception as e:
-            logger.error(f"Error processing video: {e}")
-            return False

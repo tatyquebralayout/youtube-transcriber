@@ -39,6 +39,9 @@ class YouTubeTranscriberApp:
         self.app = Flask(__name__)
         self.app.config['SECRET_KEY'] = 'your-secret-key'
         
+        # Configuração do Obsidian
+        self.obsidian_vault = r"F:\pasta estudos\Code Brain"
+        
         # Diretórios
         self.base_dir = Path(__file__).parent
         self.dirs = {
@@ -47,12 +50,22 @@ class YouTubeTranscriberApp:
             'logs': self.base_dir / 'logs'
         }
         
+        # Verifica se o caminho do vault existe
+        if not os.path.exists(self.obsidian_vault):
+            raise ValueError(f"O caminho do vault '{self.obsidian_vault}' não existe.")
+        
+        # Inicializa o transcriber com o caminho do vault
+        self.transcriber = Transcriber(
+            output_dir=self.dirs['transcricoes'],
+            downloads_dir=self.dirs['downloads'],
+            obsidian_vault=self.obsidian_vault
+        )
+        
         # Inicializa o gerenciador de mensagens
         self.messages_manager = Messages()
         
         self._setup_directories()
         self._setup_cuda()
-        self._setup_transcriber()
         self._setup_routes()
         
         # Status das transcrições
@@ -68,12 +81,6 @@ class YouTubeTranscriberApp:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         logger.info(f"Using device: {self.device}")
 
-    def _setup_transcriber(self):
-        self.transcriber = Transcriber(
-            output_dir=self.dirs['transcricoes'],
-            downloads_dir=self.dirs['downloads']
-        )
-
     def _setup_routes(self):
         self.app.add_url_rule('/', 'index', self.index)
         self.app.add_url_rule('/transcribe', 'transcribe', 
@@ -85,27 +92,36 @@ class YouTubeTranscriberApp:
 
     def update_status(self, video_id: str, status: str, progress: int, error: str = None):
         """Atualiza o status de uma transcrição"""
-        message = self.messages_manager.get_message(progress)
-        self.transcription_status[video_id] = {
-            'status': status,
-            'progress': progress,
-            'message': message,
-            'error': error
-        }
-        logger.debug(f"Status updated: {video_id} - {status} - {progress}% - {message}")
+        try:
+            message = self.messages_manager.get_message(progress)
+            self.transcription_status[video_id] = {
+                'status': status,
+                'progress': progress,
+                'message': message,
+                'error': error
+            }
+            logger.debug(f"Status updated: {video_id} - {status} - {progress}% - {message}")
+        except Exception as e:
+            logger.error(f"Error updating status: {e}")
 
     def process_video(self, url: str, video_id: str):
         """Processa o vídeo em background"""
         try:
+            # Iniciando o processo
+            self.update_status(video_id, 'starting', 0)
+            
+            # Download
             self.update_status(video_id, 'downloading', 20)
+            
+            # Processamento
+            self.update_status(video_id, 'processing', 40)
+            
             success = self.transcriber.process_video(url)
             
             if success:
                 self.update_status(video_id, 'completed', 100)
-                logger.info(f"Video processed successfully: {video_id}")
             else:
-                self.update_status(video_id, 'error', -1, error='Falha na transcrição')
-                logger.error(f"Failed to process video: {video_id}")
+                self.update_status(video_id, 'error', -1, error='Falha no processamento do vídeo')
                 
         except Exception as e:
             logger.error(f"Error processing video {video_id}: {e}")
@@ -164,8 +180,9 @@ class YouTubeTranscriberApp:
         """Status da transcrição"""
         status_data = self.transcription_status.get(video_id, {
             'status': 'not_found',
-            'message': self.messages_manager.get_message(-1),
-            'progress': 0
+            'progress': 0,
+            'message': self.messages_manager.get_message(0),
+            'error': None
         })
         return jsonify(status_data)
 
