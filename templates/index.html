@@ -84,6 +84,10 @@
                 this.funMessage = document.getElementById('fun-message');
                 this.transcriptionsList = document.getElementById('transcriptions-list');
                 
+                this.pollInterval = 2000; // 2 segundos entre cada verificação
+                this.maxRetries = 300; // Máximo de tentativas (10 minutos)
+                this.retryCount = 0;
+
                 this.setupEventListeners();
                 this.loadTranscriptions();
             }
@@ -165,6 +169,11 @@
             }
 
             async checkStatus(videoId) {
+                if (this.retryCount >= this.maxRetries) {
+                    this.handleError(new Error("Tempo limite de transcrição excedido"));
+                    return;
+                }
+
                 try {
                     const response = await fetch(`/status/${encodeURIComponent(videoId)}`);
                     if (!response.ok) {
@@ -179,7 +188,14 @@
                     );
 
                     if (!['completed', 'error'].includes(data.status)) {
-                        setTimeout(() => this.checkStatus(videoId), 1000);
+                        this.retryCount++;
+                        setTimeout(() => this.checkStatus(videoId), this.pollInterval);
+                    } else if (data.status === 'completed') {
+                        // Recarrega a lista de transcrições após conclusão
+                        setTimeout(() => {
+                            this.loadTranscriptions();
+                            this.retryCount = 0;
+                        }, 1000);
                     }
                 } catch (error) {
                     this.handleError(error);

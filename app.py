@@ -67,9 +67,33 @@ class YouTubeTranscriberApp:
         self._setup_directories()
         self._setup_cuda()
         self._setup_routes()
+        self._configure_logging()
         
         # Status das transcrições
         self.transcription_status = {}
+
+    def _configure_logging(self):
+        """Configura o logging com níveis apropriados"""
+        logging.getLogger('werkzeug').setLevel(logging.WARNING)  # Reduz logs do Flask
+        
+        # Configura o formato do log
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        
+        # Handler para arquivo
+        file_handler = logging.FileHandler('app.log')
+        file_handler.setFormatter(formatter)
+        file_handler.setLevel(logging.INFO)
+        
+        # Handler para console
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        console_handler.setLevel(logging.WARNING)  # Só mostra warnings e erros no console
+        
+        # Configura o logger root
+        root_logger = logging.getLogger()
+        root_logger.setLevel(logging.INFO)
+        root_logger.addHandler(file_handler)
+        root_logger.addHandler(console_handler)
 
     def _setup_directories(self):
         for name, path in self.dirs.items():
@@ -100,7 +124,9 @@ class YouTubeTranscriberApp:
                 'message': message,
                 'error': error
             }
-            logger.debug(f"Status updated: {video_id} - {status} - {progress}% - {message}")
+            # Só loga mudanças significativas de status
+            if status in ['starting', 'completed', 'error'] or progress % 20 == 0:
+                logger.info(f"Status updated: {video_id} - {status} - {progress}%")
         except Exception as e:
             logger.error(f"Error updating status: {e}")
 
@@ -184,6 +210,7 @@ class YouTubeTranscriberApp:
             'message': self.messages_manager.get_message(0),
             'error': None
         })
+        # Remove logging desnecessário da rota de status
         return jsonify(status_data)
 
     def list_transcricoes(self):
@@ -224,4 +251,7 @@ def create_app():
 
 if __name__ == '__main__':
     flask_app = create_app()
+    # Configura o Flask para modo silencioso
+    import logging
+    logging.getLogger('werkzeug').setLevel(logging.WARNING)
     flask_app.run(host='0.0.0.0', port=5000, debug=True)
